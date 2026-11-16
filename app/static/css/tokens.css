@@ -1,0 +1,418 @@
+/*
+  Travel Itinerary Generator Platform - Variant B
+  Art Direction: Fresh, Vibrant & Inviting
+  Personality: Modern, friendly, and inspiring for travel. Clean and easy to navigate.
+*/
+
+/* 1. Design Tokens */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: 'Lexend', var(--font-sans);
+
+  /* Light Theme Palette */
+  --primary-light: #3B82F6; /* blue-500 */
+  --primary-dark-light: #2563EB; /* blue-600 */
+  --accent-light: #F97316; /* orange-500 */
+  --accent-dark-light: #EA580C; /* orange-600 */
+  --surface-light: #FFFFFF;
+  --surface-muted-light: #F3F4F6; /* gray-100 */
+  --border-light: #E5E7EB; /* gray-200 */
+  --text-primary-light: #111827; /* gray-900 */
+  --text-secondary-light: #6B7280; /* gray-500 */
+  --text-on-primary-light: #FFFFFF;
+  --success-light: #10B981; /* green-500 */
+  --warning-light: #F59E0B; /* amber-500 */
+  --danger-light: #EF4444; /* red-500 */
+  --shadow-sm-light: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md-light: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg-light: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Dark Theme Palette */
+  --primary-dark: #60A5FA; /* blue-400 */
+  --primary-dark-dark: #3B82F6; /* blue-500 */
+  --accent-dark: #FB923C; /* orange-400 */
+  --accent-dark-dark: #F97316; /* orange-500 */
+  --surface-dark: #1F2937; /* gray-800 */
+  --surface-muted-dark: #374151; /* gray-700 */
+  --border-dark: #4B5563; /* gray-600 */
+  --text-primary-dark: #F9FAFB; /* gray-50 */
+  --text-secondary-dark: #D1D5DB; /* gray-300 */
+  --text-on-primary-dark: #111827;
+  --success-dark: #34D399; /* green-400 */
+  --warning-dark: #FBBF24; /* amber-400 */
+  --danger-dark: #F87171; /* red-400 */
+  --shadow-sm-dark: 0 1px 2px 0 rgb(0 0 0 / 0.15);
+  --shadow-md-dark: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --shadow-lg-dark: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+}
+
+/* Assign tokens to CSS variables */
+body[data-theme='light'] {
+    --primary: var(--primary-light);
+    --primary-dark: var(--primary-dark-light);
+    --accent: var(--accent-light);
+    --accent-dark: var(--accent-dark-light);
+    --surface: var(--surface-light);
+    --surface-muted: var(--surface-muted-light);
+    --border: var(--border-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --text-on-primary: var(--text-on-primary-light);
+    --success: var(--success-light);
+    --warning: var(--warning-light);
+    --danger: var(--danger-light);
+    --shadow-sm: var(--shadow-sm-light);
+    --shadow-md: var(--shadow-md-light);
+    --shadow-lg: var(--shadow-lg-light);
+}
+
+body[data-theme='dark'] {
+    --primary: var(--primary-dark);
+    --primary-dark: var(--primary-dark-dark);
+    --accent: var(--accent-dark);
+    --accent-dark: var(--accent-dark-dark);
+    --surface: var(--surface-dark);
+    --surface-muted: var(--surface-muted-dark);
+    --border: var(--border-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --text-on-primary: var(--text-on-primary-dark);
+    --success: var(--success-dark);
+    --warning: var(--warning-dark);
+    --danger: var(--danger-dark);
+    --shadow-sm: var(--shadow-sm-dark);
+    --shadow-md: var(--shadow-md-dark);
+    --shadow-lg: var(--shadow-lg-dark);
+}
+
+/* 2. Base & Typography */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--surface);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 0.5em 0;
+}
+h1 { font-size: 3rem; line-height: 1.1; }
+h2 { font-size: 2.25rem; line-height: 1.2; }
+h3 { font-size: 1.5rem; line-height: 1.3; }
+p { margin-top: 0; margin-bottom: 1rem; max-width: 65ch; }
+a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--primary-dark); text-decoration: underline; }
+
+/* 3. Layout & Global Components */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+}
+.main-header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.logo-gradient {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-nav { display: flex; align-items: center; gap: 1rem; }
+.main-nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.main-nav a:hover, .main-nav a.active {
+    color: var(--text-primary);
+    background-color: var(--surface-muted);
+}
+.main-footer {
+  background-color: var(--surface-muted);
+  color: var(--text-secondary);
+  padding: 2rem 0;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+}
+.screen-section {
+  padding: 3rem 0;
+  display: none; /* Hidden by default for SPA mode */
+}
+.screen-section.active { display: block; }
+/* For single-page files, we want to see the content */
+body.is-single-page .screen-section { display: block; }
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 200;
+    transition: top 0.3s;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* 4. Reusable Components */
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.25;
+}
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--text-on-primary);
+  border-color: var(--accent);
+}
+.btn-accent:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.btn-secondary {
+  background-color: var(--surface-muted);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+.btn-secondary:hover {
+  background-color: var(--border);
+  border-color: var(--border);
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.card-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Forms */
+.form-group { margin-bottom: 1.5rem; }
+.form-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Pills/Badges */
+.pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.pill-blue { background-color: color-mix(in srgb, var(--primary) 15%, transparent); color: var(--primary-dark); }
+.pill-orange { background-color: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent-dark); }
+.pill-green { background-color: color-mix(in srgb, var(--success) 15%, transparent); color: var(--success); }
+.pill-gray { background-color: var(--surface-muted); color: var(--text-secondary); }
+
+/* Theme Toggle */
+.theme-toggle {
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--text-secondary);
+}
+body[data-theme='light'] .theme-toggle .dark-icon { display: block; }
+body[data-theme='light'] .theme-toggle .light-icon { display: none; }
+body[data-theme='dark'] .theme-toggle .dark-icon { display: none; }
+body[data-theme='dark'] .theme-toggle .light-icon { display: block; }
+
+/* Grid for dashboards */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.75rem; }
+  .container { padding: 0 1rem; }
+  .main-nav { display: none; /* Simple menu for mobile */ }
+  .grid-cols-2, .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+}
+
+@media (max-width: 375px) {
+  h1 { font-size: 2rem; }
+}
+
+/* Specific component styles */
+.itinerary-day {
+  border-left: 3px solid var(--primary);
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+.itinerary-item {
+  position: relative;
+  padding: 1rem;
+  background-color: var(--surface-muted);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: grab;
+}
+.itinerary-item:active {
+  cursor: grabbing;
+  background-color: var(--border);
+}
+.stat-card {
+    text-align: center;
+}
+.stat-card .stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+.stat-card .stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.hero-section {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.hero-section .eyebrow {
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.hero-section h1 {
+  max-width: 20ch;
+  margin: 0 auto 1rem;
+}
+
+.hero-section .gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-section .sub-headline {
+  max-width: 60ch;
+  margin: 0 auto 2rem;
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.hero-section .cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}

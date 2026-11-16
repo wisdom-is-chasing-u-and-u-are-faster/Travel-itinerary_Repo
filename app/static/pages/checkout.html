@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Travel Itinerary Generator</title>
+    <link rel="stylesheet" href="tokens.css">
+</head>
+<body class="is-single-page" data-theme="light">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="itinerary-creation.html" class="logo">Trip<span class="logo-gradient">Craft</span></a>
+            <nav class="main-nav">
+                <a href="itinerary-creation.html">Create</a>
+                <a href="itinerary-view-edit.html">Itinerary</a>
+                <a href="collaborative-workspace.html">Collaborate</a>
+                <a href="expense-ledger.html">Expenses</a>
+                <a href="affiliate-recommendations.html" class="active">Deals</a>
+                <a href="account-settings.html">Settings</a>
+                <a href="admin-dashboard.html">Admin</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle-btn-page" aria-label="Toggle theme">
+                <svg class="dark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                <svg class="light-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-3.536a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM3.05 4.536a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zm3.536 11.314a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="screen-section" id="checkout">
+            <div class="container" style="max-width: 600px;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2>Secure Checkout</h2>
+                    <p class="text-secondary">Complete your booking for "Milan Walking Tour".</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 class="card-title">Order Summary</h3>
+                            <span class="pill pill-blue">2 tickets</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <p>Milan Walking Tour (2 x $45.00)</p>
+                            <p>$90.00</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;" class="text-secondary">
+                            <p>Taxes & Fees</p>
+                            <p>$7.50</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.25rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                            <p>Total</p>
+                            <p>$97.50</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Payment Information</h3>
+                        <p class="text-secondary" style="margin:0; font-size: 0.9rem;">Payments are securely handled by Stripe (CONSTRAINT-013) to meet PCI DSS SAQ-A compliance.</p>
+                    </div>
+                     <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label" for="card-element">Card Details</label>
+                                <div id="card-element" class="form-control" style="padding-top: 12px; padding-bottom: 12px;">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                    <span class="text-secondary">💳 Card Number&nbsp;&nbsp;&nbsp;&nbsp;MM/YY&nbsp;&nbsp;&nbsp;&nbsp;CVC</span>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="form-label" for="name-on-card">Name on Card</label>
+                                <input type="text" id="name-on-card" class="form-control" placeholder="Alex Smith">
+                             </div>
+                             <div class="form-group">
+                                <label class="form-label" for="email-checkout">Email for confirmation</label>
+                                <input type="email" id="email-checkout" class="form-control" placeholder="alex@example.com">
+                             </div>
+                             <button type="submit" class="btn btn-primary btn-accent" style="width: 100%; margin-top: 1rem; font-size: 1.125rem;">Confirm and Pay $97.50</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 TripCraft. All rights reserved. Part of the ARCH-7790 Epic.</p>
+        </div>
+    </footer>
+    <script>
+        // Simple theme toggle logic
+        const toggle = document.getElementById('theme-toggle-btn-page');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) { body.setAttribute('data-theme', currentTheme); }
+        toggle.addEventListener('click', () => {
+            let newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
