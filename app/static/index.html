@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Itinerary Generator - Variant B</title>
+    <link rel="stylesheet" href="tokens.css">
+</head>
+<body data-theme="light">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#itinerary-creation" class="logo nav-link">Trip<span class="logo-gradient">Craft</span></a>
+            <nav class="main-nav">
+                <a href="#itinerary-creation" class="nav-link active">Create</a>
+                <a href="#itinerary-view-edit" class="nav-link">Itinerary</a>
+                <a href="#collaborative-workspace" class="nav-link">Collaborate</a>
+                <a href="#expense-ledger" class="nav-link">Expenses</a>
+                <a href="#affiliate-recommendations" class="nav-link">Deals</a>
+                <a href="#account-settings" class="nav-link">Settings</a>
+                <a href="#admin-dashboard" class="nav-link">Admin</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle theme">
+                <svg class="dark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                <svg class="light-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-3.536a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM3.05 4.536a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zm3.536 11.314a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Itinerary Creation Screen -->
+        <section class="screen-section" id="itinerary-creation">
+             <div class="container">
+                 <div class="hero-section">
+                    <div class="eyebrow"></div>
+                    <h1>Design Your <span class="gradient-text">Perfect Trip</span></h1>
+                    <p class="sub-headline">Just tell us what you're dreaming of. Our AI will handle the details, from hotel recommendations to daily activities, crafting a personalized itinerary just for you.</p>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="unstructured-input-spa" class="form-label">Describe your ideal trip</label>
+                                <textarea id="unstructured-input-spa" class="form-control" placeholder="e.g., 'A 10-day relaxing trip to northern Italy in September. We love food, history, and light hiking. Budget is around $4000.'" rows="5"></textarea>
+                            </div>
+                            <div class="grid grid-cols-2" style="gap: 1rem;">
+                                <div class="form-group"><label for="destination-spa" class="form-label">Destination(s)</label><input type="text" id="destination-spa" class="form-control" placeholder="e.g., Rome, Florence, Venice"></div>
+                                <div class="form-group"><label for="date-range-spa" class="form-label">Date Range (Max 30 days - )</label><input type="text" id="date-range-spa" class="form-control" placeholder="e.g., 2024-09-10 to 2024-09-20"></div>
+                            </div>
+                            <div class="grid grid-cols-3" style="gap: 1rem;">
+                                <div class="form-group"><label for="budget-spa" class="form-label">Budget Tier</label><select id="budget-spa" class="form-control"><option value="1">Budget</option><option value="2" selected>Balanced</option><option value="3">Luxury</option></select></div>
+                                <div class="form-group"><label for="pacing-spa" class="form-label">Pacing Intensity</label><select id="pacing-spa" class="form-control"><option>Relaxed</option><option selected>Moderate</option><option>Packed</option></select></div>
+                                <div class="form-group"><label for="travelers-spa" class="form-label">Travelers</label><input type="number" id="travelers-spa" class="form-control" value="2" min="1"></div>
+                            </div>
+                            <div style="text-align: right; margin-top: 1rem;"><button type="submit" class="btn btn-primary btn-accent">Generate Itinerary &rarr;</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Itinerary View/Edit Screen -->
+        <section class="screen-section" id="itinerary-view-edit">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div><h2>Your Trip to Northern Italy</h2><p class="text-secondary">September 10th - 20th, 2024</p></div>
+                    <div><button class="btn btn-secondary">Share</button><button class="btn btn-primary">Save Changes</button></div>
+                </div>
+                <p class="text-secondary" style="margin-bottom: 2rem;">You can reorder itinerary items by dragging and dropping them..</p>
+                <div class="itinerary-day"><h3>Day 1: Arrival in Milan <span class="pill pill-gray">Sept 10</span></h3><div class="itinerary-item" draggable="true"><strong>3:00 PM</strong> - Arrive at MXP, pick up rental car</div><div class="itinerary-item" draggable="true"><strong>5:00 PM</strong> - Check into Hotel Milano</div><div class="itinerary-item" draggable="true"><strong>7:30 PM</strong> - Dinner at Trattoria del Duomo</div></div>
+                <div class="itinerary-day"><h3>Day 2: Exploring Milan <span class="pill pill-gray">Sept 11</span></h3><div class="itinerary-item" draggable="true"><strong>9:00 AM</strong> - Visit the Duomo di Milano</div><div class="itinerary-item" draggable="true"><strong>11:00 AM</strong> - Galleria Vittorio Emanuele II</div></div>
+            </div>
+        </section>
+
+        <!-- Collaborative Workspace Screen -->
+        <section class="screen-section" id="collaborative-workspace">
+             <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;"><div><h2>Italy Trip Workspace <span class="pill pill-blue">Shared</span></h2><p class="text-secondary">Real-time collaboration for your trip planning</p></div></div>
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <div style="grid-column: span 2;"><h3>Itinerary</h3><p class="text-secondary">This is a read-only view. Go to the <a href="#itinerary-view-edit" class="nav-link">Itinerary tab</a> to make changes.</p><div class="itinerary-day"><h4>Day 1: Arrival in Milan</h4></div><div class="itinerary-day"><h4>Day 2: Exploring Milan</h4></div></div>
+                    <div class="card"><div class="card-header"><h3 class="card-title">Collaborators</h3></div><div class="card-body"><p class="text-secondary" style="font-size: 0.9rem; margin-bottom: 1.5rem;">Manage roles and permissions for this trip.</p><div style="margin-bottom: 1rem;"><strong>You (Alex)</strong> <span class="pill pill-blue">Owner</span></div><div style="margin-bottom: 1rem;"><strong>Sam Jones</strong> <select><option>Editor</option><option>Viewer</option></select></div><button class="btn btn-secondary" style="width: 100%;">Invite</button></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expense Ledger Screen -->
+        <section class="screen-section" id="expense-ledger">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;"><div><h2>Shared Expense Ledger</h2><p class="text-secondary">Track spending with multi-currency support.</p></div><button class="btn btn-primary">Add Expense</button></div>
+                <div class="card"><div class="card-body" style="padding:0;"><table style="width:100%; border-collapse: collapse;"><thead><tr style="background-color: var(--surface-muted);"><th style="padding:1rem; text-align:left;">Date</th><th style="padding:1rem; text-align:left;">Description</th><th style="padding:1rem; text-align:left;">Amount</th></tr></thead><tbody><tr><td style="padding:1rem; border-bottom: 1px solid var(--border);">Sept 11</td><td style="padding:1rem; border-bottom: 1px solid var(--border);">Duomo Tickets</td><td style="padding:1rem; border-bottom: 1px solid var(--border);">44.00 EUR</td></tr><tr><td style="padding:1rem; border-bottom: 1px solid var(--border);">Sept 10</td><td style="padding:1rem; border-bottom: 1px solid var(--border);">Dinner</td><td style="padding:1rem; border-bottom: 1px solid var(--border);">128.00 EUR</td></tr></tbody></table></div></div>
+            </div>
+        </section>
+
+        <!-- Affiliate Recommendations Screen -->
+        <section class="screen-section" id="affiliate-recommendations">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3rem;"><h2>Recommended for You</h2><p class="text-secondary">Curated experiences for your trip to Italy.</p></div>
+                <div class="grid grid-cols-3">
+                    <div class="card"><div class="card-body"><h3 class="card-title">Florence Duomo Tour</h3><p class="text-secondary">Skip the line and climb the dome.</p><a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">View on Viator &rarr;</a></div></div>
+                    <div class="card"><div class="card-body"><h3 class="card-title">Hotel Pitti Palace</h3><p class="text-secondary">Rooftop terrace with great views.</p><a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">View on Booking.com &rarr;</a></div></div>
+                    <div class="card"><div class="card-body"><h3 class="card-title">Tuscan Cooking Class</h3><p class="text-secondary">Learn to make authentic pasta.</p><a href="#" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">View on GetYourGuide &rarr;</a></div></div>
+                </div>
+                 <div style="margin-top: 3rem; text-align:center;"><a href="#checkout" class="nav-link btn btn-primary">Book an In-App Experience</a></div>
+            </div>
+        </section>
+
+        <!-- Checkout Screen -->
+        <section class="screen-section" id="checkout">
+            <div class="container" style="max-width: 600px;">
+                <div style="text-align: center; margin-bottom: 2rem;"><h2>Secure Checkout</h2><p class="text-secondary">Complete your booking.</p></div>
+                <div class="card"><div class="card-header"><h3 class="card-title">Payment Information</h3><p class="text-secondary" style="margin:0; font-size: 0.9rem;">Powered by Stripe for PCI compliance (CONSTRAINT-013).</p></div><div class="card-body"><form><div class="form-group"><label class="form-label" for="card-element-spa">Card Details</label><div id="card-element-spa" class="form-control" style="padding: 1rem;"><span class="text-secondary">💳 Card Number&nbsp;&nbsp;MM/YY&nbsp;&nbsp;CVC</span></div></div><button type="submit" class="btn btn-primary btn-accent" style="width: 100%;">Confirm and Pay</button></form></div></div>
+            </div>
+        </section>
+
+        <!-- Account Settings Screen -->
+        <section class="screen-section" id="account-settings">
+            <div class="container" style="max-width: 800px;">
+                <div style="text-align: center; margin-bottom: 3rem;"><h2>Settings</h2><p class="text-secondary">Manage your account, preferences, and data.</p></div>
+                <div class="card" id="profile-settings-spa"><div class="card-header"><h3 class="card-title">Profile</h3></div><div class="card-body"><form><div class="grid grid-cols-2" style="gap: 1rem;"><div class="form-group"><label for="full-name-spa" class="form-label">Full Name</label><input type="text" id="full-name-spa" class="form-control" value="Alex Smith"></div><div class="form-group"><label for="email-spa" class="form-label">Email</label><input type="email" id="email-spa" class="form-control" value="alex@example.com" readonly></div></div><div style="text-align: right;"><button type="submit" class="btn btn-primary">Save</button></div></form></div></div>
+                <div class="card" id="offline-management-spa" style="margin-top: 2rem;"><div class="card-header"><h3 class="card-title">Offline Access</h3></div><div class="card-body"><p class="text-secondary">Enable offline mode to sync itineraries and maps to your device.</p><button class="btn btn-secondary">Manage Sync Settings</button></div></div>
+                <div class="card" id="notifications-spa" style="margin-top: 2rem;"><div class="card-header"><h3 class="card-title">Notifications</h3></div><div class="card-body"><div class="form-group"><input type="checkbox" id="email-notif-spa" checked> <label for="email-notif-spa">Email notifications</label></div></div></div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard Screen -->
+        <section class="screen-section" id="admin-dashboard">
+            <div class="container">
+                <div style="margin-bottom: 2rem;"><h2>Admin Dashboard</h2><p class="text-secondary">Key business metrics.</p></div>
+                <div class="grid grid-cols-3">
+                    <div class="card stat-card"><div class="stat-label">Affiliate CTR</div><div class="stat-value">4.2%</div></div>
+                    <div class="card stat-card"><div class="stat-label">In-App Conversion</div><div class="stat-value">1.8%</div></div>
+                    <div class="card stat-card"><div class="stat-label">Avg. AI Cost / Day</div><div class="stat-value">$0.012</div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 TripCraft. All rights reserved. Part of the ARCH-7790 Epic.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple SPA-like navigation
+        const sections = document.querySelectorAll('.screen-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function showSection(id) {
+            sections.forEach(section => {
+                if (section.id === id) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        function handleNav(e) {
+            const hash = location.hash.substring(1);
+            if (hash) {
+                showSection(hash);
+            } else {
+                showSection('itinerary-creation'); // Default section
+            }
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const id = link.getAttribute('href').substring(1);
+                history.pushState(null, '', '#' + id);
+                showSection(id);
+            });
+        });
+
+        window.addEventListener('popstate', handleNav);
+        document.addEventListener('DOMContentLoaded', handleNav);
+
+        // Theme Toggle
+        const toggle = document.getElementById('theme-toggle-btn');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        
+        toggle.addEventListener('click', () => {
+            let newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>

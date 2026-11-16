@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Workspace - Travel Itinerary Generator</title>
+    <link rel="stylesheet" href="tokens.css">
+</head>
+<body class="is-single-page" data-theme="light">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="itinerary-creation.html" class="logo">Trip<span class="logo-gradient">Craft</span></a>
+            <nav class="main-nav">
+                <a href="itinerary-creation.html">Create</a>
+                <a href="itinerary-view-edit.html">Itinerary</a>
+                <a href="collaborative-workspace.html" class="active">Collaborate</a>
+                <a href="expense-ledger.html">Expenses</a>
+                <a href="affiliate-recommendations.html">Deals</a>
+                <a href="account-settings.html">Settings</a>
+                <a href="admin-dashboard.html">Admin</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle-btn-page" aria-label="Toggle theme">
+                <svg class="dark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                <svg class="light-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-3.536a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM3.05 4.536a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zm3.536 11.314a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="screen-section" id="collaborative-workspace">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <div>
+                        <h2>Italy Trip Workspace <span class="pill pill-blue">Shared</span></h2>
+                        <p class="text-secondary">Real-time collaboration for your trip planning</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <div style="grid-column: span 2;">
+                        <h3>Itinerary</h3>
+                        <p class="text-secondary">This is a read-only view. Go to the <a href="itinerary-view-edit.html">Itinerary tab</a> to make changes.</p>
+                         <div class="itinerary-day">
+                            <h4>Day 1: Arrival in Milan <span class="pill pill-gray">Sept 10</span></h4>
+                            <div class="itinerary-item" style="cursor: default;"><strong>3:00 PM</strong> - Arrive at MXP</div>
+                            <div class="itinerary-item" style="cursor: default;"><strong>5:00 PM</strong> - Check into Hotel Milano</div>
+                        </div>
+                         <div class="itinerary-day">
+                            <h4>Day 2: Exploring Milan <span class="pill pill-gray">Sept 11</span></h4>
+                            <div class="itinerary-item" style="cursor: default;"><strong>9:00 AM</strong> - Visit the Duomo di Milano</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                         <div class="card-header">
+                             <h3 class="card-title">Collaborators</h3>
+                         </div>
+                         <div class="card-body">
+                            <p class="text-secondary" style="font-size: 0.9rem; margin-bottom: 1.5rem;">Manage roles and permissions for this trip.</p>
+                            <div style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>You (Alex)</strong>
+                                    <p class="text-secondary" style="margin:0;">alex@example.com</p>
+                                </div>
+                                <span class="pill pill-blue">Owner</span>
+                            </div>
+                            <div style="margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>Sam Jones</strong>
+                                    <p class="text-secondary" style="margin:0;">sam@example.com</p>
+                                </div>
+                                <select class="form-control" style="width: auto;">
+                                    <option>Editor</option>
+                                    <option>Viewer</option>
+                                </select>
+                            </div>
+                             <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>Casey Miller</strong>
+                                    <p class="text-secondary" style="margin:0;">casey@example.com</p>
+                                </div>
+                                <select class="form-control" style="width: auto;">
+                                    <option>Editor</option>
+                                    <option selected>Viewer</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-secondary" style="width: 100%;">Invite Collaborator</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 TripCraft. All rights reserved. Part of the ARCH-7790 Epic.</p>
+        </div>
+    </footer>
+    <script>
+        // Simple theme toggle logic
+        const toggle = document.getElementById('theme-toggle-btn-page');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) { body.setAttribute('data-theme', currentTheme); }
+        toggle.addEventListener('click', () => {
+            let newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>

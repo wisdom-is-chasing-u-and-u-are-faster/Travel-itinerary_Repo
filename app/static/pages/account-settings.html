@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Travel Itinerary Generator</title>
+    <link rel="stylesheet" href="tokens.css">
+</head>
+<body class="is-single-page" data-theme="light">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="itinerary-creation.html" class="logo">Trip<span class="logo-gradient">Craft</span></a>
+            <nav class="main-nav">
+                <a href="itinerary-creation.html">Create</a>
+                <a href="itinerary-view-edit.html">Itinerary</a>
+                <a href="collaborative-workspace.html">Collaborate</a>
+                <a href="expense-ledger.html">Expenses</a>
+                <a href="affiliate-recommendations.html">Deals</a>
+                <a href="account-settings.html" class="active">Settings</a>
+                 <a href="admin-dashboard.html">Admin</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle-btn-page" aria-label="Toggle theme">
+                <svg class="dark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                <svg class="light-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.121-3.536a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM3.05 4.536a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zm3.536 11.314a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="screen-section" id="account-settings">
+            <div class="container" style="max-width: 800px;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h2>Settings</h2>
+                    <p class="text-secondary">Manage your account, preferences, and data.</p>
+                </div>
+
+                <!-- Profile Settings -->
+                <div class="card" id="profile-settings">
+                    <div class="card-header"><h3 class="card-title">Profile</h3></div>
+                    <div class="card-body">
+                        <form>
+                            <div class="grid grid-cols-2" style="gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="full-name" class="form-label">Full Name</label>
+                                    <input type="text" id="full-name" class="form-control" value="Alex Smith">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" id="email" class="form-control" value="alex@example.com" readonly>
+                                </div>
+                            </div>
+                            <div style="text-align: right;"><button type="submit" class="btn btn-primary">Save Profile</button></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Offline Management Settings -->
+                <div class="card" id="offline-management" style="margin-top: 2rem;">
+                    <div class="card-header"><h3 class="card-title">Offline Access</h3></div>
+                    <div class="card-body">
+                        <p class="text-secondary">Manage offline access for your itineraries and maps. Changes are synced via a background process with LWW conflict resolution.</p>
+                        <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+                            <label for="offline-toggle" class="form-label" style="margin-bottom:0;">Enable Offline Mode</label>
+                            <input type="checkbox" id="offline-toggle" checked> <!-- Simple toggle switch would be better -->
+                        </div>
+                        <div class="form-group">
+                             <label class="form-label">Cached Data</label>
+                             <p>Vector map tiles and spatial assets will be pre-cached for offline use.</p>
+                             <button class="btn btn-secondary">Clear Cache</button>
+                             <button class="btn btn-secondary">Force Sync Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notifications Settings -->
+                <div class="card" id="notifications" style="margin-top: 2rem;">
+                    <div class="card-header"><h3 class="card-title">Notifications</h3></div>
+                    <div class="card-body">
+                        <p class="text-secondary">Choose how you want to be notified about collaborative workspace updates.</p>
+                        <div class="form-group">
+                            <input type="checkbox" id="email-notif" checked> <label for="email-notif">Email notifications</label>
+                        </div>
+                         <div class="form-group">
+                            <input type="checkbox" id="push-notif" checked> <label for="push-notif">Push notifications (Mobile)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data & Privacy Settings -->
+                <div class="card" style="margin-top: 2rem;">
+                     <div class="card-header"><h3 class="card-title">Data & Privacy</h3></div>
+                     <div class="card-body">
+                        <p class="text-secondary">Manage your personal data in compliance with GDPR and CCPA.</p>
+                        <div style="display:flex; gap: 1rem;">
+                            <button class="btn btn-secondary">Download My Data</button>
+                            <button class="btn btn-secondary" style="--primary: var(--danger); --primary-dark: #B91C1C;">Delete My Account (Right to be Forgotten)</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 TripCraft. All rights reserved. Part of the ARCH-7790 Epic.</p>
+        </div>
+    </footer>
+    <script>
+        // Simple theme toggle logic
+        const toggle = document.getElementById('theme-toggle-btn-page');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) { body.setAttribute('data-theme', currentTheme); }
+        toggle.addEventListener('click', () => {
+            let newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
